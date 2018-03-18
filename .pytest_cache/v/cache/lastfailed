@@ -1,1 +1,4 @@
-{}
+{
+  "test_all.py::test_app": true,
+  "test_all.py::test_index_with_patching_without_client_patching": true
+}

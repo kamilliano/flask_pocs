@@ -1,19 +1,30 @@
 #!/usr/bin/env python
 
-from flask import Flask
+from flask import Flask, jsonify
 
 import lib.code
 
-app = Flask(__name__)
+def create_app():
 
-@app.route('/')
-def index():
+    app = Flask(__name__)
 
-    message = "hello"
+    @app.route('/ping')
+    def ping():
+        return jsonify(ping='pong')
 
-    message = lib.code.append_text(message, " calling function from route")
+    @app.route('/api')
+    def api():
 
-    return message
+        message = "hello"
+
+        message = lib.code.append_text(message, "calling function from route")
+
+        return message
+
+    return app
+
+
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(host='127.0.0.1', port=8080, debug=True)
